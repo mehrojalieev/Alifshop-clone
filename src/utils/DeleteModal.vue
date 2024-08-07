@@ -46,9 +46,9 @@ const handleCloseModal = () => {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100vh !important;
     background-color: rgba(190, 190, 190, 0.473);
-    z-index: 100 !important;
+    z-index: 999 !important;
 }
 
 .delete-modal {

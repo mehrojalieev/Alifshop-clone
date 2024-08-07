@@ -1,8 +1,6 @@
 import Home from "../views/Home.vue"
 import {createRouter, createWebHistory} from 'vue-router'
-// import ManageProducts from "@/views/ManageProducts.vue"
-// import Dashboard from '@/views/Dashboard.vue'
-// import ManageUsers from "@/views/ManageUsers.vue"
+import ManageProducts from "../views/admin/ManageProducts.vue"
 
 
 const routes = createRouter({
@@ -44,6 +42,16 @@ const routes = createRouter({
             name: 'Favorites',
             component: () => import('../views/FavoriteProducts.vue')
         },
+        {
+            path: '/admin/',
+            name: "Admin",
+            component: () => import('../views/admin/Admin.vue'),
+            children: [
+                {
+                    path: 'manage-products', name: 'ManageProducts', component: ManageProducts
+                }
+            ]
+        }
 
         // {
         //     path: '/account/',

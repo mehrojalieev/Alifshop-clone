@@ -8,8 +8,8 @@ import Features from './components/Features.vue';
 </script>
 
 <template>
-    <!-- <AnnouncementBar /> -->
-    <!-- <Nav /> -->
+    <AnnouncementBar />
+    <Nav />
     <RouterView />
     <Features/>
     <Footer/>
