@@ -49,7 +49,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <nav :style="{ display: route.path.startsWith('/dddd') ? 'none' : 'block' }"
+    <nav :style="{ display: route.path.startsWith('/admin') ? 'none' : 'block' }"
         :class="{ 'fixed-navbar': isFixed }">
         <div class="nav-wrapper container">
             <RouterLink to="/">

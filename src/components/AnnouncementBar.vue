@@ -7,7 +7,7 @@ const route = useRoute()
 </script>
 
 <template>
-    <div :style="{display: route.path.startsWith('/product') ? 'none' : 'flex'}"  class="announcement-bar">
+    <div :style="{display: route.path.startsWith('/admin') ? 'none' : 'flex'}"  class="announcement-bar">
 
         <div class="nav__top-navigation container">
             <select class="language-category">

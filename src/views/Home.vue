@@ -9,8 +9,6 @@ import Nav from '../layout/Nav.vue';
 
 <template>
     <div>
-        <AnnouncementBar/>
-        <Nav/>
         <Hero/>
         <AllProducts/>
         

@@ -1,5 +1,11 @@
+<script setup>
+import { useRoute } from 'vue-router';
+
+const route = useRoute()
+</script>
+
 <template>
-    <div class="feature">
+    <div :style="{ display: route.path.startsWith('/admin') ? 'none' : 'block'}"  class="feature">
 
         <div class="feature-wrapper container">
             <img src="../assets/images/feature.png">
