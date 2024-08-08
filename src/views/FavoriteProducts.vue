@@ -1,13 +1,11 @@
 <script setup>
 import { useStore } from '../store/store';
 import Card from '../utils/Card.vue';
-import Nav from '../layout/Nav.vue';
     const store = useStore()
 
 </script>
 
 <template>
-    <Nav/>
       <div class="cart container">
             <div v-if="store.$state.liked_data.length > 0" class="liked__product-wrapper">
                 <h2>Saralanganlar</h2>

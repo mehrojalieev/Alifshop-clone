@@ -31,7 +31,7 @@ watch(isOpenSidebar, () =>{
             </RouterLink>
           </li>
           <li class="menu-item">
-            <RouterLink class="item-link" to="">
+            <RouterLink class="item-link" to="manage-users">
               <span class="material-symbols-outlined">people</span>
               <strong>Users management</strong>
             </RouterLink>

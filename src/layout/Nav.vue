@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
-import { useRoute } from 'vue-router';
+import { RouterLink, useRoute } from 'vue-router';
 import { useStore } from '../store/store';
 import Dialog from 'primevue/dialog';
 
@@ -88,7 +88,7 @@ onBeforeUnmount(() => {
                     <strong class="number-text">{{ this.registeredNumber }}</strong>
                 </RouterLink> -->
            
-                <button type="button" @click="isOpenModal = !isOpenModal" class="auth-link">Kirish</button>
+                <RouterLink to="/admin" @click="isOpenModal = !isOpenModal" class="auth-link">Kirish</RouterLink>
 
             </div>
             <!-- <CategoryDropdown :openCategory="openCategory"/> -->

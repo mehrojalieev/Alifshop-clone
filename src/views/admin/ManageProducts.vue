@@ -1,21 +1,30 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import AdminTable from '../../utils/admin-table/AdminTable.vue';
 import ApiInstance from '../../api';
 
 const All_Products = ref([])
+
+
 const input_value = ref("")
-console.log(All_Products);
 async function RenderProducts() {
         try {
             const response = await ApiInstance.get('products')
-            console.log(response);
-            All_Products.value = response.data;
+            All_Products.value = input_value.value.length > 0 ? response.data.filter(product => product.product_name.toLowerCase().includes(input_value.value.toLowerCase())) : response.data;
         } 
         catch (error) {
             console.log(error);    
         }
 }
+
+
+console.log(input_value.value);
+
+watch(input_value, (newValue, oldValue) => {
+    RenderProducts()
+    
+})
+
 
 onMounted(
     RenderProducts
@@ -35,8 +44,7 @@ onMounted(
         </div>
         <div class="product__actions-wrapper">
             <form v-on:submit.prevent="this.LoadProducts" class="product__search-form">
-                <span @click="input_value.value = ''" :style="{ display: input_value ? 'block' : 'none' }"
-                    class="material-symbols-outlined clear__input-btn">close</span>
+                <span @click="input_value = ''" :style="{ display: input_value ? 'block' : 'none' }" class="material-symbols-outlined clear__input-btn">close</span>
                 <input v-model="input_value" type="text" placeholder="Qidirish...">
                 <button type="submit"><span class="material-symbols-outlined">search</span></button>
             </form>
@@ -54,7 +62,7 @@ onMounted(
             <!-- <AddProductModal :openModal="this.openModal" /> -->
         </div>
         <div class="table-wrapper">
-            <AdminTable tableType="products" :renderData="All_Products.value" />
+            <AdminTable tableType="products" :renderData="All_Products" />
         </div>
     </div>
 </template>
