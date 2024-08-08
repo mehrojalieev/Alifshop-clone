@@ -1,26 +1,26 @@
 <script setup>
     const props = defineProps({
-        product: {
+        user: {
             type: Object,
             required: true
         }
     })
 
+
+    console.log(props.user);
+    
 </script>
 
-
 <template>
-    <tr class="product-row">
+    <tr class="user-row">
         <td>
-            <img class="product-image"
-                :src="props.product.image[0] ? props.product.image[0] : 'https://totalcomp.com/images/no-image.jpeg'">
+            <img class="user-image"
+                :src="props.user.avatar ? props.user.avatar : 'https://png.pngtree.com/png-vector/20220709/ourmid/pngtree-businessman-user-avatar-wearing-suit-with-red-tie-png-image_5809521.png'">
         </td>
-        <td>{{ props.product.product_name.slice(0, 20) }}...</td>
-        <td>{{ props.product.price }} so'm</td>
-        <td>{{ props.product.in_stock }} dona</td>
-        <td>{{ props.product.color.split("_").join(" ") }}</td>
-        <td class="product__manage-action">
-            <span class="material-symbols-outlined edit-btn">edit</span>
+        <td>{{ props.user.name }}</td>
+        <td>{{ props.user.email }} so'm</td>
+        <td>{{ props.user.role === 'customer' ? 'Xaridor' : 'Admin' }} </td>
+        <td class="user__manage-action">
             <span class="material-symbols-outlined delete-btn">delete</span>
         </td>
     </tr>
@@ -28,8 +28,9 @@
 
 
 
-<style scoped lang="scss">
-.product-row {
+<style lang="scss" scoped>
+.user-row {
+    width: 100%;
     vertical-align: middle;
     height: 100%;
     height: 75px !important;
@@ -41,13 +42,13 @@
     }
 }
 
-.product-image {
+.user-image {
     width: 44px;
     aspect-ratio: 1/1;
     object-fit: contain;
 }
 
-.product-row:hover {
+.user-row:hover {
     cursor: default;
     background-color: var(--warning-color);
     color: var(--light-color);
@@ -57,7 +58,7 @@
     }
 }
 
-.product__manage-action {
+.user__manage-action {
     display: flex;
     justify-content: center;
     align-items: center !important;

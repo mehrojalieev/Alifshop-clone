@@ -1,7 +1,7 @@
 
 <script setup>
 import ProductTr from './table-rows/ProductTr.vue';
-
+import UserTr from './table-rows/UserTr.vue';
     const props = defineProps({
         tableType: {
             type: String,
@@ -13,7 +13,6 @@ import ProductTr from './table-rows/ProductTr.vue';
         }
     })
 
-    console.log(props);
 </script>
 
 
@@ -40,7 +39,7 @@ import ProductTr from './table-rows/ProductTr.vue';
         </thead>
         <tbody class="table-body">
             <ProductTr v-if="props.tableType === 'products'" :product="product" v-for="product in props.renderData" :key="product.id" />
-            <!-- <UserTr v-else :user="user" v-for="user in props.renderData" :key="user.id"/> -->
+            <UserTr v-else :user="user" v-for="user in props.renderData" :key="user.id"/>
         </tbody>
     </table>
 </template>

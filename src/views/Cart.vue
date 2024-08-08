@@ -35,7 +35,6 @@ async function handleScrollTo() {
 </script>
 
 <template>
-    <Nav/>
     <div class="cart container">
         <div v-if="store.$state.cart_data.length > 0" class="cart__product-wrapper">
             <h3 class="cart-title">Savat </h3>
