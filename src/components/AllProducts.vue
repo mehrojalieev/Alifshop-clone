@@ -35,6 +35,7 @@ onMounted(LoadProducts)
 
 
 <style lang="scss">
+
     .all__products-wrapper{
         width: 100%;
         margin-top: 40px;
@@ -57,9 +58,7 @@ onMounted(LoadProducts)
     }
     // RESPONSIVE STYLES
 
-    @media only screen and (max-width: 1444px){
-
-    }
+   
     @media only screen and (max-width: 1144px){
         .product__card-container{
             gap: 20px 8px;

@@ -74,6 +74,7 @@ watch(() => store.$state.cart_data, () => {
 
 
 <style lang="scss" scoped>
+
 .product-box {
     margin-top: 1rem;
     border-top: 1px solid #d5d6d7;

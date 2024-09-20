@@ -7,6 +7,7 @@ import CardOfCart from '../utils/CardOfCart.vue';
 const store = useStore()
 
 const total_price = ref(0)
+const data = ref([])
 
 
 
@@ -21,7 +22,7 @@ onMounted(() => {
 
 watch(() => store.$state.cart_data, () => {
   updateTotalPrice();
-}, { deep: true });
+}, {deep: true});
 
 
 async function handleScrollTo() {
@@ -31,10 +32,10 @@ async function handleScrollTo() {
         })
 }
 
-
 </script>
 
 <template>
+    
     <div class="cart container">
         <div v-if="store.$state.cart_data.length > 0" class="cart__product-wrapper">
             <h3 class="cart-title">Savat </h3>
@@ -79,6 +80,7 @@ async function handleScrollTo() {
 
 
 <style lang="scss" scoped>
+
 .cart-title {
     font-size: 30px;
     font-weight: 500;

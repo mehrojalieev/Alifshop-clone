@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 import { useStore } from '../store/store';
+
 const props = defineProps({
     product: {
         type: Object,
