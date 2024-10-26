@@ -88,7 +88,7 @@ onBeforeUnmount(() => {
                     <strong class="number-text">{{ this.registeredNumber }}</strong>
                 </RouterLink> -->
            
-                <RouterLink to="/admin" @click="isOpenModal = !isOpenModal" class="auth-link">Kirish</RouterLink>
+                <RouterLink to="/" @click="isOpenModal = !isOpenModal" class="auth-link">Kirish</RouterLink>
 
             </div>
             <!-- <CategoryDropdown :openCategory="openCategory"/> -->
