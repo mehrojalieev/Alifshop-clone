@@ -27,7 +27,7 @@ onMounted(() => {
         <div class="product__top-navigation">
             <h2 class="">Foydalanuvchilar Ro'yxati</h2>
             <div class="top__navigation-content">
-                <img src="../assets/images/instagram.webp" alt="User default avatar">
+                <img src="../../assets/images/instagram.webp" alt="User default avatar">
                 <p>{{ this.registeredNumber }}</p>
             </div>
         </div>
