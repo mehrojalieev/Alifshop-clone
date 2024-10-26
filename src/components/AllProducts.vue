@@ -1,39 +1,39 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import Card from "../utils/Card.vue"
-import ApiInstance from '../api/index.js'
+import Card from "../utils/Card.vue";
+import ApiInstance from '../api/index.js';
+import SkeletonCard from '../utils/SkeletonCard.vue';
 
 const products_data = ref([]);
-const isExist = ref(false);
-const inputValue = ref("")
-
+const isLoading = ref(true); 
+const placeholderCount = ref(18); 
 
 const LoadProducts = async () => {
-    try {
-        const response = await ApiInstance.get('/api/product/all')
-        products_data.value = response.data
-        console.log(response.data);
-        
-    } 
-    catch (error) {
-        console.log(error);    
-    }
-}
+  try {
+    const response = await ApiInstance.get('/api/product/all');
+    products_data.value = response.data;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    isLoading.value = false; 
+  }
+};
 
-
-onMounted(LoadProducts)
-
-
+onMounted(LoadProducts);
 </script>
 
 <template>
-   <div class="all__products-wrapper container">
-            <h2 class="products-title">Sizni qiziqtirishi mumkin</h2>
-            <div class="product__card-container">
-                <Card :product="product" v-for="(product, index) in products_data" :key="index"/>
-            </div>
-        </div>
+  <div class="all__products-wrapper container">
+    <h2 class="products-title">Sizni qiziqtirishi mumkin</h2>
+    <div class="product__card-container">
+      <SkeletonCard v-if="isLoading" v-for="index in placeholderCount" :key="'skeleton-' + index" />
+      
+      <Card v-else :product="product" v-for="(product, index) in products_data" :key="index" />
+    </div>
+  </div>
 </template>
+
+
 
 
 <style lang="scss">
@@ -58,8 +58,9 @@ onMounted(LoadProducts)
         text-decoration: none;
         color: var(--dark-color)
     }
-    // RESPONSIVE STYLES
 
+
+    // RESPONSIVE STYLES
    
     @media only screen and (max-width: 1144px){
         .product__card-container{
