@@ -4,11 +4,14 @@ import { useStore } from '../store/store';
 import DeleteModal from './DeleteModal.vue';
 
 const props = defineProps({
-    product: {
+    product: {  
         type: Object,
         required: true,
     }
 })
+
+console.log(props.product);
+
 
 const store = useStore()
 const total_price = ref(0)
@@ -50,9 +53,9 @@ watch(() => store.$state.cart_data, () => {
 
 <template>
     <div class="product-box">
-        <img :src="product.image[0]" :alt="product.product_name">
+        <img :src="product.images[0]" :alt="product.name">
         <div class="product-info">
-            <RouterLink class="product-name" to="{name}">{{ product.product_name }}</RouterLink>
+            <RouterLink class="product-name" to="{name}">{{ product.name }}</RouterLink>
             <strong>Narx: {{ product.price }} so'm</strong>
             <strong>Brend: {{ product.brand }}</strong>
             <p>Yetkazib berish muddati: Toshkent bo'ylab kun davomida viloyatlar bo'ylab 3 kungacha</p>

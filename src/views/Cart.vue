@@ -9,6 +9,7 @@ const store = useStore()
 const total_price = ref(0)
 const data = ref([])
 
+console.log(store.$state.cart_data);
 
 
 const updateTotalPrice = () => {

@@ -2,7 +2,7 @@
 import axios from "axios"
 
 const ApiInstance = axios.create({
-    baseURL: 'http://localhost:10000/api',
+    baseURL: 'https://lifshop-api.onrender.com',
     headers:{
         'Content-type': 'application/json'
     }

@@ -5,19 +5,14 @@ import AdminTable from '../../utils/admin-table/AdminTable.vue';
 
 const UsersData = ref([]);
 
-
-
 async function LoadAllUsers() {
     try {
         const response = await axios.get("https://api.escuelajs.co/api/v1/users")
         console.log(response);
         UsersData.value = response.data
-
-
     }
     catch (error) {
         console.log(error);
-
     }
 }
 
@@ -43,7 +38,6 @@ onMounted(() => {
                 <input v-model="this.input_value" type="text" placeholder="Qidirish...">
                 <button type="submit"><span class="material-symbols-outlined">search</span></button>
             </form>
-
 
         </div>
         <div class="table-wrapper">
