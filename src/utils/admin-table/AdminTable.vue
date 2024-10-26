@@ -47,6 +47,7 @@ import UserTr from './table-rows/UserTr.vue';
 
 
 <style>
+
 .table {
     margin-top: 1.5rem;
     width: 100% !important;

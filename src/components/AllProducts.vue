@@ -10,8 +10,10 @@ const inputValue = ref("")
 
 const LoadProducts = async () => {
     try {
-        const response = await ApiInstance.get('/products')
+        const response = await ApiInstance.get('/api/product/all')
         products_data.value = response.data
+        console.log(response.data);
+        
     } 
     catch (error) {
         console.log(error);    
@@ -28,13 +30,14 @@ onMounted(LoadProducts)
    <div class="all__products-wrapper container">
             <h2 class="products-title">Sizni qiziqtirishi mumkin</h2>
             <div class="product__card-container">
-                <Card :product="product" v-for="product in products_data"/>
+                <Card :product="product" v-for="(product, index) in products_data" :key="index"/>
             </div>
         </div>
 </template>
 
 
 <style lang="scss">
+
     .all__products-wrapper{
         width: 100%;
         margin-top: 40px;
@@ -57,9 +60,7 @@ onMounted(LoadProducts)
     }
     // RESPONSIVE STYLES
 
-    @media only screen and (max-width: 1444px){
-
-    }
+   
     @media only screen and (max-width: 1144px){
         .product__card-container{
             gap: 20px 8px;

@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 import { useStore } from '../store/store';
+
 const props = defineProps({
     product: {
         type: Object,
@@ -13,10 +14,10 @@ const props = defineProps({
 const store = useStore()
 
 const handleAddToCart = (current_product) => {
-    let ExtraProduct = { ...current_product }
-    ExtraProduct = { ...current_product, count: 1 }
-    store.ProductAddToCart(ExtraProduct)
-}
+    
+    const ExtraProduct = { ...current_product, count: 1 };
+    store.ProductAddToCart(ExtraProduct);
+};
 
 const RemoveProductCart = (product) => {
     let ExtraProduct = { ...product }
@@ -36,23 +37,23 @@ const handleUnlikeProduct = (unliked_product) => {
 
 <template>
     <div class="product-card">
-        <span @click="handleUnlikeProduct(props.product)" v-if="store.$state.liked_data?.findIndex(f => f?.id === props.product?.id) !== -1"   class="pi pi-heart-fill like-btn liked-btn"></span>
+        <span @click="handleUnlikeProduct(props.product)" v-if="store.$state.liked_data?.findIndex(f => f?._id === props.product?._id) !== -1"   class="pi pi-heart-fill like-btn liked-btn"></span>
         <span @click="handleLikeProduct(props.product)" v-else class=" like-btn pi pi-heart "></span>
         <router-link onclick.native.stop :key="props.product?.id" :to="{
             name: 'Single_Product',
             query: { category: `${props.product?.category}` },
             params: { id: `${props.product?.id}` }
         }" class="product__card-link">
-            <img :src="props.product?.image[0]" :alt='props.product?.product_name'>
-            <p class="product-name"> {{ props.product?.product_name?.slice(0, 30) }} {{ props.product?.memory_rom === 1024 ? '1TB' :
+            <img :src="props.product?.images[0]" :alt='props.product?.name'>
+            <p class="product-name"> {{ props.product?.name?.slice(0, 30) }} {{ props.product?.memory_rom === 1024 ? '1TB' :
                 props.product?.memory_rom === null ? '' : props.product?.memory_rom + 'GB' }}</p>
             <span class="monthly-price">dan 200.000 so'm/oyiga</span>
             <strong class="price old-price">{{ props.product?.price }} so'm</strong>
             <strong class="price">{{ props.product?.aksiya_narx }} so'm</strong>
         </router-link>
-        <div class="counter-action" v-if="store.$state?.cart_data.findIndex(f => f?.id == props.product?.id) != -1">
+        <div class="counter-action" v-if="store.$state?.cart_data.findIndex(f => f?._id == props.product?._id) != -1">
             <button @click="RemoveProductCart(product)">-</button>
-            <strong>{{ store.$state.cart_data.find(ind => ind?.id === props.product?.id)?.count }}</strong>
+            <strong>{{ store.$state.cart_data.find(ind => ind?._id === props.product?._id)?.count }}</strong>
             <button @click="handleAddToCart(props.product)">+</button>
         </div>
         <button v-else @click="handleAddToCart(props.product)" type="button" class="add__cart-btn">

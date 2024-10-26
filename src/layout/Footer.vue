@@ -83,6 +83,7 @@ const route = useRoute()
 </template>
 
 <style lang="scss">
+
 footer {
     padding: 3rem;
     width: 100%;
