@@ -42,7 +42,7 @@ const handleUnlikeProduct = (unliked_product) => {
         <router-link onclick.native.stop :key="props.product?.id" :to="{
             name: 'Single_Product',
             query: { category: `${props.product?.category}` },
-            params: { id: `${props.product?.id}` }
+            params: { id: `${props.product?._id}` }
         }" class="product__card-link">
             <img :src="props.product?.images[0]" :alt='props.product?.name'>
             <p class="product-name"> {{ props.product?.name?.slice(0, 30) }} {{ props.product?.memory_rom === 1024 ? '1TB' :

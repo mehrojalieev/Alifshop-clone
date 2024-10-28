@@ -55,7 +55,7 @@ watch(() => store.$state.cart_data, () => {
     <div class="product-box">
         <img :src="product.images[0]" :alt="product.name">
         <div class="product-info">
-            <RouterLink class="product-name" to="{name}">{{ product.name }}</RouterLink>
+            <RouterLink class="product-name" :to="{ name: 'Single_Product', params: { id: product._id } }">{{ product.name }}</RouterLink>
             <strong>Narx: {{ product.price }} so'm</strong>
             <strong>Brend: {{ product.brand }}</strong>
             <p>Yetkazib berish muddati: Toshkent bo'ylab kun davomida viloyatlar bo'ylab 3 kungacha</p>
