@@ -10,10 +10,6 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { RouterLink, useRoute } from 'vue-router';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
-import Nav from '../layout/Nav.vue';
-
-
-
 const store = useStore()
 const route = useRoute()
 const thumbsSwiper = ref(null);
@@ -34,8 +30,8 @@ const setThumbsSwiper = (swiper) => {
 
 const LoadSingleProduct = async () => {
     try {
-        const response = await ApiInstance.get(`/products/${route.params.id}`)
-        single_product.value = response.data[0]
+        const response = await ApiInstance.get(`/api/product/${route.params.id}`)
+        single_product.value = response.data
     } catch (error) {
         console.log(error)
     }
@@ -92,7 +88,6 @@ onUpdated(async () => {
 </script>
 
 <template>
-    <Nav/>
     <div class="single__product-navbar">
         <span class="pi pi-chevron-left back-icon" @click="route.go(-1)"></span>
         <RouterLink class="logo-link" to="/">
@@ -117,7 +112,7 @@ onUpdated(async () => {
                 <div class="variants__swiper-carousel">
                     <Swiper @swiper="setThumbsSwiper" :spaceBetween="10" :slidesPerView="4" :freeMode="true"
                         :watchSlidesProgress="true" :modules="modules" class="mySwiper variants-carousel">
-                        <SwiperSlide v-for="(variants, index) in single_product.image" :key="index">
+                        <SwiperSlide v-for="(variants, index) in single_product?.images" :key="index">
                             <img :src="variants" />
                         </SwiperSlide>
 
@@ -130,7 +125,7 @@ onUpdated(async () => {
                     <Swiper :style="{ '--swiper-navigation-color': '#fff', '--swiper-pagination-color': '#fff', }"
                         :slides-per-view="1" :spaceBetween="10" :navigation="true" :thumbs="{ swiper: thumbsSwiper }"
                         :modules="modules" class="mySwiper2">
-                        <SwiperSlide v-for="(main_image, index) in single_product.image" :key="index">
+                        <SwiperSlide v-for="(main_image, index) in single_product?.images" :key="index">
                             <img :src="main_image" />
                         </SwiperSlide>
 
@@ -150,7 +145,7 @@ onUpdated(async () => {
                     <strong>Baholanmagan</strong>
                 </div>
                 <strong class="chegirma-foiz">9%</strong>
-                <h2 class="product-name"> {{ single_product.product_name }}</h2>
+                <h2 class="product-name"> {{ single_product?.name }}</h2>
                 <div class="price__info-content">
                     <div class="term__price-content">
                         <span>Muddatli to'lovga sotib olish</span>
@@ -158,7 +153,7 @@ onUpdated(async () => {
                     </div>
                     <div class="main__price-content">
                         <span>Narx</span>
-                        <p>{{ single_product.price }} so'm</p>
+                        <p>{{ single_product?.price }} so'm</p>
                     </div>
                 </div>
                 <div class="monthly-payment">
@@ -169,12 +164,12 @@ onUpdated(async () => {
                     <button>24</button>
                 </div>
                 <div class="content-actions">
-                    <div v-if="store.$state.cart_data.findIndex(f => f.id === single_product.id) !== -1"
+                    <div v-if="store.$state.cart_data.findIndex(f => f?._id === single_product?._id) !== -1"
                         class="counter__action-content">
                         <div class="counter-action">
                             <button @click="RemoveProductCart(single_product)">-</button>
-                            <strong>{{ store.$state.cart_data.find(ind => ind?.id ===
-                                single_product?.id)?.count }}</strong>
+                            <strong>{{ store.$state.cart_data.find(ind => ind?._id ===
+                                single_product?._id)?.count }}</strong>
                             <button @click="handleAddToCart(single_product)">+</button>
                         </div>
                         <RouterLink class="cart-link" to="/cart">Savatga o'tish</RouterLink>
@@ -185,7 +180,7 @@ onUpdated(async () => {
                         Savatga qo'shish
                     </button>
                     <button class="add__favorite-btn">
-                        <span v-if="store.$state?.liked_data.findIndex(f => f?.id == single_product?.id) !== -1"
+                        <span v-if="store.$state?.liked_data.findIndex(f => f?._id == single_product?._id) !== -1"
                             @click="handleUnlikeProduct(single_product)"
                             class="pi pi-heart-fill  like-btn liked-btn"></span>
                         <span v-else @click="handleLIkedProduct(this.single_product)"
